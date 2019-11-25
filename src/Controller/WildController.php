@@ -100,7 +100,7 @@ class WildController extends AbstractController
 
     /**
      * @param string|null $slug
-     * @Route("/showbyprogram/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show_program")
+     * @Route("/program/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show_program")
      * @return Response
      */
     public function showByProgram(?string $slug):Response
@@ -133,7 +133,7 @@ class WildController extends AbstractController
 
     /**
      * @param string|null $slug
-     * @Route("/showbyseason/{id}", defaults={"id" = null}, name="show_season")
+     * @Route("/season/{id}", defaults={"id" = null}, name="show_season")
      * @return Response
      */
     public function showBySeason(int $id)

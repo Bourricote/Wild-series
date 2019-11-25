@@ -2,12 +2,12 @@
 {% block title %}{{ category.name }}{% endblock %}
 
 {% block body %}
-
+<h1><strong>{{ category.name }}</strong></h1>
     {% for program in programs %}
     <div class="media">
         <img class="align-self-start mr-3 poster" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
+            <h1 class="mt-0"><a href="{{ path('wild_show_program', {'id': season.id }) }}">{{ program.title }}</a></h1>
             <p>{{ program.summary }}</p>
             <p>Categorie : {{ program.category.name }}</p>
         </div>
