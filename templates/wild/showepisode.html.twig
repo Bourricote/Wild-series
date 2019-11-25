@@ -11,12 +11,8 @@
             <p>Categorie : {{ program.category.name }}</p>
 
             <div>
-                <h1>{{ season.description }} episodes</h1>
-                <ul>
-                    {% for episode in episodes %}
-                        <li><a href="{{ path('wild_show_episode', {'id': episode.id }) }}" > {{ episode.number }}. {{ episode.title }}</a></li>
-                    {% endfor %}
-                </ul>
+                <h2>{{ season.description ~ ' . Episode ' ~  episode.number ~ ' . ' ~ episode.title }}</h2>
+                <p>{{ episode.synopsis }}</p>
             </div>
         </div>
     </div>
