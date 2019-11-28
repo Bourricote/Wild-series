@@ -42,7 +42,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted()) {
             $entityManager->persist($category);
             $entityManager->flush();
-            return $this-> redirectToRoute('wild_index');
+            return $this-> redirectToRoute('category_index');
         }
 
         return $this->render('wild/index_category.html.twig', [
