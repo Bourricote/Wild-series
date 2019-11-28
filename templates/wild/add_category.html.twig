@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h3> Ajouter une catégorie </h3>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn btn-light">{{ button_label|default('Ajouter') }}</button>
+    {{ form_end(form) }}
+
+
+    <a href="{{ path('wild_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}

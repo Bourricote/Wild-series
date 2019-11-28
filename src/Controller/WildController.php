@@ -7,8 +7,8 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramSearchType;
-use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,8 +20,10 @@ class WildController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param Request $request
+     * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -33,10 +35,24 @@ class WildController extends AbstractController
             );
         }
 
+        $form = $this->createForm(ProgramSearchType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted()) {
+            $data = $form->getData();
+            $searchedProgram = $this->getDoctrine()
+                ->getRepository(Program::class)
+                ->findOneByTitle($data);
+            return $this->render('wild/index.html.twig', [
+                'programs' => $programs,
+                'program' => $searchedProgram,
+                'form' => $form->createView(),
+            ]);
+        }
 
         return $this->render('wild/index.html.twig', [
             'programs' => $programs,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -73,27 +89,27 @@ class WildController extends AbstractController
     }
 
     /**
-     * @param string|null $categoryName
-     * @Route("/category/{categoryName}", defaults={"categoryName" = null}, name="show_category")
+     * @param int|null $id
+     * @Route("/category/{id}", defaults={"id" = null}, name="show_category")
      * @return Response
      */
-    public function showByCategory(?string $categoryName)
+    public function showByCategory(?int $id)
     {
-        if (!$categoryName) {
-            throw $this->createNotFoundException('No category name has been sent to find programs');
+        if (!$id) {
+            throw $this->createNotFoundException('No id has been sent to find programs');
         }
 
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findOneBy(['name' => mb_strtolower($categoryName)]);
+            ->findOneById($id);
 
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findBy(['category' => $category], ['id' => 'desc'], 3);
+            ->findBy(['category' => $category]);
 
         if (!$programs) {
             throw  $this->createNotFoundException(
-                'No programs in '.$categoryName.' category'
+                'No programs in this category'
             );
         }
 

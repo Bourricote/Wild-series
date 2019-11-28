@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Catégories :</h1>
+    {% for category in categories %}
+        <div>
+            <h2><a href="{{ path('wild_show_category', { 'id': category.id }) }}">{{ loop.index }} / {{ category.name }} </a></h2>
+        </div>
+    {% else %}
+        Aucune série trouvée.
+    {% endfor %}
+    <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+
+{% endblock %}
