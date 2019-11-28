@@ -4,6 +4,13 @@
 @import "posters.scss";
 
 body {
-    background-color: $secondaryColorGreen;
+    background-image: url("../images/background.png");
+    background-repeat:no-repeat;
+    background-color: $mainColor;
     font-family: $mainFont;
+}
+
+.media {
+    background-color: #dfdfdf;
+    margin: 20px;
 }

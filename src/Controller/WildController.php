@@ -6,6 +6,8 @@ use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\ProgramSearchType;
+use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +32,8 @@ class WildController extends AbstractController
                 'No program found in program\'s table.'
             );
         }
+
+
 
         return $this->render('wild/index.html.twig', [
             'programs' => $programs,
@@ -100,26 +104,23 @@ class WildController extends AbstractController
     }
 
     /**
-     * @param string|null $slug
-     * @Route("/program/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show_program")
+     * @param int|null $id
+     * @Route("/program/{id}", defaults={"id" = null}, name="show_program")
      * @return Response
      */
-    public function showByProgram(?string $slug):Response
+    public function showByProgram(?int $id):Response
     {
-        if (!$slug) {
+        if (!$id) {
             throw $this
-                ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
+                ->createNotFoundException('No id has been sent to find a program in program\'s table.');
         }
-        $slug = preg_replace(
-            '/-/',
-            ' ', ucwords(trim(strip_tags($slug)), "-")
-        );
+
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
+            ->findOneBy(['id' => $id]);
         if (!$program) {
             throw $this->createNotFoundException(
-                'No program with '.$slug.' title, found in program\'s table.'
+                'No program with found in program\'s table.'
             );
         }
 
@@ -127,7 +128,6 @@ class WildController extends AbstractController
 
         return $this->render('wild/showbyprogram.html.twig', [
             'program' => $program,
-            'slug'  => $slug,
             'seasons' => $seasons,
         ]);
     }

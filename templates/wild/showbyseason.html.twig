@@ -11,22 +11,21 @@
             <p>Categorie : {{ program.category.name }}</p>
 
             <div>
-                <h1>{{ season.description }} episodes</h1>
+                <h2>{{ season.description }} episodes</h2>
                 <ul>
                     {% for episode in episodes %}
                         <li><a href="{{ path('wild_show_episode', {'id': episode.id }) }}" > {{ episode.number }}. {{ episode.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
+            <a href="{{ path('wild_show_program', { 'id': program.id }) }}">
+                Retour à la liste des saisons
+            </a>
         </div>
     </div>
 
     <a href="{{ path('wild_index') }}">
         Retour à l'accueil
-    </a>
-    <br>
-    <a href="{{ path('wild_index') }}">
-        Testing index() method from WildController to view all programs.
     </a>
 
 {% endblock %}
