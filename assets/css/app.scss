@@ -11,7 +11,10 @@ body {
     font-family: $mainFont;
 }
 
-.media {
+.container {
     background-color: #dfdfdf;
-    margin: 20px;
+}
+
+.table th, .table td {
+    word-break: break-word;
 }

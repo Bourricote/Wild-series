@@ -5,24 +5,30 @@
 {% block body %}
     <h1>Program index</h1>
 
+    <h2><a href="{{ path('program_new') }}">Ajouter un programme</a></h2>
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Summary</th>
+                <th>Titre</th>
+                <th>Résumé</th>
                 <th>Poster</th>
+                <th>Saisons</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for program in programs %}
             <tr>
-                <td>{{ program.id }}</td>
-                <td>{{ program.title }}</td>
-                <td>{{ program.summary }}</td>
-                <td>{{ program.poster }}</td>
-                <td>
+                <td class="col-1">{{ program.id }}</td>
+                <td class="col-2">{{ program.title }}</td>
+                <td class="col-4">{{ program.summary }}</td>
+                <td class="col-3">{{ program.poster }}</td>
+                <td class="col-1">
+                    <a href="{{ path('season_index') }}">saisons</a>
+                </td>
+                <td class="col-1">
                     <a href="{{ path('program_show', {'id': program.id}) }}">show</a>
                     <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
                 </td>
@@ -35,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('program_new') }}">Create new</a>
+
 {% endblock %}
