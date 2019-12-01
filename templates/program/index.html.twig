@@ -9,22 +9,22 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Résumé</th>
-                <th>Poster</th>
-                <th>Saisons</th>
-                <th>actions</th>
+            <tr class="row">
+                <th class="col-1">Id</th>
+                <th class="col-2">Titre</th>
+                <th class="col-5">Résumé</th>
+                <th class="col-2">Poster</th>
+                <th class="col-1">Saisons</th>
+                <th class="col-1">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for program in programs %}
-            <tr>
+            <tr class="row">
                 <td class="col-1">{{ program.id }}</td>
                 <td class="col-2">{{ program.title }}</td>
-                <td class="col-4">{{ program.summary }}</td>
-                <td class="col-3">{{ program.poster }}</td>
+                <td class="col-5">{{ program.summary }}</td>
+                <td class="col-2">{{ program.poster }}</td>
                 <td class="col-1">
                     <a href="{{ path('season_index') }}">saisons</a>
                 </td>
