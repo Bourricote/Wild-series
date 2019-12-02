@@ -3,9 +3,9 @@
 {% block title %}Program index{% endblock %}
 
 {% block body %}
-    <h1>Program index</h1>
+    <h1>Liste des séries</h1>
 
-    <h2><a href="{{ path('program_new') }}">Ajouter un programme</a></h2>
+    <h2><a href="{{ path('program_new') }}">Ajouter une série</a></h2>
 
     <table class="table">
         <thead>
@@ -22,7 +22,7 @@
         {% for program in programs %}
             <tr class="row">
                 <td class="col-1">{{ program.id }}</td>
-                <td class="col-2">{{ program.title }}</td>
+                <td class="col-2"><a href="{{ path('wild_show_program', {'id': program.id}) }}">{{ program.title }}</a></td>
                 <td class="col-5">{{ program.summary }}</td>
                 <td class="col-2"><img src="{{ program.poster }}" alt="program poster" class="mini-poster"></td>
                 <td class="col-1">

@@ -18,31 +18,6 @@
     {% endif %}
     <br>
 
-    <h3><a href="{{ path('category_index') }}"> Liste des catégories </a></h3>
-    <br>
-    <h3><a href="{{ path('program_index') }}"> Liste des séries </a></h3>
-    <br>
-    <h3><a href="{{ path('season_index') }}"> Liste des saisons </a></h3>
-    <br>
-    <h3><a href="{{ path('episode_index') }}"> Liste des épisodes </a></h3>
-    <br>
-    <h3><a href="{{ path('actor_index') }}"> Liste des acteurs </a></h3>
-    <br>
-    <br>
-    <br>
 
-
-
-    <a href="{{ path('wild_show', { 'slug': "fear-the-walking-dead" }) }}">
-        Testing show() method from WildController with a real program s slug.
-    </a>
-    <br>
-    <a href="{{ path('wild_show_category', { 'id': "1" }) }}">
-        Testing showByCategory() method from WildController.
-    </a>
-    <br>
-    <a href="{{ path('wild_show_program', { 'slug': "fear-the-walking-dead" }) }}">
-        Testing showByProgram() method from WildController with a real program s slug.
-    </a>
 
 {% endblock %}

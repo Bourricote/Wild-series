@@ -13,16 +13,19 @@
             <li>
                 <a class="nav-link" href="{{ path('program_index') }}"> Liste des séries </a>
             </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Catégories
+                    Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('wild_show_category', {'id': 1 }) }}">Horreur</a>
-                    <a class="dropdown-item" href="{{ path('wild_show_category', {'id': 2 }) }}">Humour</a>
-                    <a class="dropdown-item" href="{{ path('wild_show_category', {'id': 3 }) }}">Thriller</a>
-                    <a class="dropdown-item" href="{{ path('wild_show_category', {'id': 8 }) }}">Aventure</a>
+                    <a class="dropdown-item" href="{{ path('category_index') }}">Catégories</a>
+                    <a class="dropdown-item" href="{{ path('program_index') }}">Séries</a>
+                    <a class="dropdown-item" href="{{ path('season_index') }}}">Saisons</a>
+                    <a class="dropdown-item" href="{{ path('episode_index') }}">Episodes</a>
+                    <a class="dropdown-item" href="{{ path('actor_index') }}">Acteurs</a>
                 </div>
             </li>
         </ul>
