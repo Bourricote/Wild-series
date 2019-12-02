@@ -12,7 +12,7 @@
             <div>
                 <ul>
                     {% for season in seasons %}
-                        <li><a href="{{ path('wild_show_season', {'id': season.id }) }}" > {{ season.description }}</a> </li>
+                        <li><a href="{{ path('wild_show_season', {'id': season.id }) }}" >Saison {{ season.year }} . {{ season.description }}</a> </li>
                     {% endfor %}
                 </ul>
             </div>

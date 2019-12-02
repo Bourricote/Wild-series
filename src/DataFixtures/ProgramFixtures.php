@@ -22,6 +22,11 @@ class ProgramFixtures extends Fixture  implements DependentFixtureInterface
             'poster' => 'https://m.media-amazon.com/images/M/MV5BZmFlMTA0MmUtNWVmOC00ZmE1LWFmMDYtZTJhYjJhNGVjYTU5XkEyXkFqcGdeQXVyMTAzMDM4MjM0._V1_.jpg',
             'category' => 'category_1',
             ],
+        'Friends' => [
+            'summary' => 'Une bande de potes à New York',
+            'poster' => 'poster',
+            'category' => 'category_2',
+        ]
         ];
 
     public function load(ObjectManager $manager)

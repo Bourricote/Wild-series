@@ -8,6 +8,7 @@ use App\Entity\Actor;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -43,6 +44,17 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($actor);
             $this->addReference('actor_' . $name, $actor);
         }
+
+        $faker = Faker\Factory::create('fr_FR');
+
+        for ($i = 0; $i < 50; $i++) {
+            $actor = new Actor();
+            $actor->setName($faker->name);
+            $number = rand(0, 2);
+            $actor->addProgram($this->getReference('program_' . $number));
+            $manager->persist($actor);
+        }
+
         $manager->flush();
     }
 
