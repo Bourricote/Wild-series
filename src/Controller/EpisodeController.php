@@ -17,6 +17,8 @@ class EpisodeController extends AbstractController
 {
     /**
      * @Route("/", name="episode_index", methods={"GET"})
+     * @param EpisodeRepository $episodeRepository
+     * @return Response
      */
     public function index(EpisodeRepository $episodeRepository): Response
     {

@@ -17,6 +17,8 @@ class SeasonController extends AbstractController
 {
     /**
      * @Route("/", name="season_index", methods={"GET"})
+     * @param SeasonRepository $seasonRepository
+     * @return Response
      */
     public function index(SeasonRepository $seasonRepository): Response
     {
