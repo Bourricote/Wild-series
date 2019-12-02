@@ -18,6 +18,8 @@
     {% endif %}
     <br>
 
-
+    {% for program in programs %}
+        <a href="{{ path('wild_show_program', {'id': program.id}) }}"><img src="{{ program.poster }}" class="poster"></a>
+    {% endfor %}
 
 {% endblock %}
