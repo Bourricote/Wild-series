@@ -20,7 +20,7 @@
             <td class="col-9">
                 <ul>
                     {% for program in programs %}
-                        <li>{{ program.title }} </li>
+                        <li><a href="{{ path('program_show', {'id': program.id}) }}">{{ program.title }}</a></li>
                     {% else %}
                         <li>Aucun acteur pour cette série</li>
                     {% endfor %}
