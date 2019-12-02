@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Actor index</h1>
-
+    <h2><a href="{{ path('actor_new') }}">Ajouter un acteur</a></h2>
     <table class="table">
         <thead>
             <tr>
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('actor_new') }}">Create new</a>
+
 {% endblock %}
