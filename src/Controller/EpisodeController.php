@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,8 +30,11 @@ class EpisodeController extends AbstractController
 
     /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Slugify $slugify
+     * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
@@ -38,6 +42,7 @@ class EpisodeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $entityManager->persist($episode);
             $entityManager->flush();
 
@@ -51,7 +56,9 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET"})
+     * @param Episode $episode
+     * @return Response
      */
     public function show(Episode $episode): Response
     {
@@ -61,14 +68,19 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Episode $episode
+     * @param Slugify $slugify
+     * @return Response
      */
-    public function edit(Request $request, Episode $episode): Response
+    public function edit(Request $request, Episode $episode, Slugify $slugify): Response
     {
         $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('episode_index');
@@ -82,6 +94,9 @@ class EpisodeController extends AbstractController
 
     /**
      * @Route("/{id}", name="episode_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Episode $episode
+     * @return Response
      */
     public function delete(Request $request, Episode $episode): Response
     {

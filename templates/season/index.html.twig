@@ -23,8 +23,8 @@
                 <td>{{ season.year }}</td>
                 <td>{{ season.description }}</td>
                 <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    <a href="{{ path('season_show', {'id': season.id}) }}"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('season_edit', {'id': season.id}) }}"><i class="fas fa-pen"></i></a>
                 </td>
             </tr>
         {% else %}

@@ -16,11 +16,15 @@
             <td class="col-9">{{ actor.name }}</td>
         </tr>
         <tr class="row">
+            <th class="col-3">Slug</th>
+            <td class="col-9">{{ actor.slug }}</td>
+        </tr>
+        <tr class="row">
             <th class="col-3">Séries</th>
             <td class="col-9">
                 <ul>
                     {% for program in programs %}
-                        <li><a href="{{ path('program_show', {'id': program.id}) }}">{{ program.title }}</a></li>
+                        <li><a href="{{ path('program_show', {'slug': program.slug}) }}">{{ program.title }}</a></li>
                     {% else %}
                         <li>Aucune série pour cet acteur</li>
                     {% endfor %}
@@ -30,9 +34,9 @@
         </tbody>
     </table>
 
+    <a href="{{ path('actor_edit', {'slug': actor.slug}) }}"><i class="fas fa-pen"></i></a>
+    <br>
     <a href="{{ path('actor_index') }}">back to list</a>
-
-    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
 
     {{ include('actor/_delete_form.html.twig') }}
 {% endblock %}
