@@ -26,7 +26,9 @@
                 <td class="col-6">{{ episode.synopsis }}</td>
                 <td class="col-1">
                     <a href="{{ path('episode_show', {'slug': episode.slug}) }}"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i></a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

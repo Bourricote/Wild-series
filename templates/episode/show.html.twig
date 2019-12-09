@@ -32,7 +32,8 @@
 
     <a href="{{ path('episode_index') }}">back to list</a>
     <br>
-    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i></a>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i></a>
+    {% endif %}
     {{ include('episode/_delete_form.html.twig') }}
 {% endblock %}

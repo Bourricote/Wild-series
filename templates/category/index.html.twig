@@ -22,7 +22,9 @@
                 <td class="col-3">{{ category.name }}</td>
                 <td class="col-1">
                     <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-pen"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-pen"></i></a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

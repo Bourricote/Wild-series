@@ -44,7 +44,8 @@
 
     <a href="{{ path('program_index') }}">back to list</a>
     <br>
-    <a href="{{ path('program_edit', {'slug': program.slug}) }}"><i class="fas fa-pen"></i></a>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('program_edit', {'slug': program.slug}) }}"><i class="fas fa-pen"></i></a>
+    {% endif %}
     {{ include('program/_delete_form.html.twig') }}
 {% endblock %}

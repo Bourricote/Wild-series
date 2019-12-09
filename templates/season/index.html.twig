@@ -24,7 +24,9 @@
                 <td>{{ season.description }}</td>
                 <td>
                     <a href="{{ path('season_show', {'id': season.id}) }}"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}"><i class="fas fa-pen"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('season_edit', {'id': season.id}) }}"><i class="fas fa-pen"></i></a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

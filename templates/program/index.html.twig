@@ -30,7 +30,10 @@
                 </td>
                 <td class="col-1">
                     <a href="{{ path('program_show', {'slug': program.slug}) }}"><i class="far fa-eye"></i></a>
-                    <a href="{{ path('program_edit', {'slug': program.slug}) }}"><i class="fas fa-pen"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('program_edit', {'slug': program.slug}) }}"><i class="fas fa-pen"></i></a>
+                    {% endif %}
+
                 </td>
             </tr>
         {% else %}
