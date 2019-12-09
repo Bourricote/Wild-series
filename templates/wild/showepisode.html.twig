@@ -14,6 +14,30 @@
                 <h2>{{ season.description ~ ' . Episode ' ~  episode.number ~ ' . ' ~ episode.title }}</h2>
                 <p>{{ episode.synopsis }}</p>
             </div>
+
+            <div>
+                <h2>Commentaires</h2>
+                {% for comment in comments %}
+                    <div>
+                        <ul>
+                        <li>Auteur : {{ comment.author.username }}</li>
+                        <li>Episode : {{ program.title }} - {{ comment.episode.title }}</li>
+                        <li>Note : {{ comment.rate }}</li>
+                        <li>Commentaire : {{ comment.comment }}</li>
+                        </ul>
+                    </div>
+                    <br>
+                {% endfor %}
+            </div>
+
+            {% if app.user %}
+                <h3>Ajouter un commentaire</h3>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-primary">Ajouter</button>
+                {{ form_end(form) }}
+            {% endif %}
+
             <a href="{{ path('wild_show_season', {'id': season.id }) }}">
                 Retour à la liste des épisodes
             </a>

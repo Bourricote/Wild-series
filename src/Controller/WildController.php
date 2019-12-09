@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\CommentType;
 use App\Form\ProgramSearchType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -169,18 +172,37 @@ class WildController extends AbstractController
 
     /**
      * @param Episode $episode
-     * @Route("/episode/{id}", defaults={"id" = null}, name="show_episode")
+     * @param Request $request
+     * @param EntityManagerInterface $em
      * @return Response
+     * @Route("/episode/{id}", defaults={"id" = null}, name="show_episode")
      */
-    public function showEpisode(Episode $episode)
+    public function showEpisode(Episode $episode, Request $request, EntityManagerInterface $em)
     {
         $season = $episode->getSeason();
         $program = $season->getProgram();
+        $comments = $episode->getComments();
+
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $author = $this->getUser();
+            $comment->setEpisode($episode);
+            $comment->setAuthor($author);
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('wild_show_episode',  ['id' => $episode->getId()]);
+        }
 
         return $this->render('wild/showepisode.html.twig', [
             'episode' => $episode,
             'season' => $season,
             'program' => $program,
+            'comments' => $comments,
+            'form' => $form->createView(),
             ]);
     }
 }

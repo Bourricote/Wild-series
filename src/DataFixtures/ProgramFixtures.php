@@ -15,7 +15,7 @@ class ProgramFixtures extends Fixture  implements DependentFixtureInterface
     const PROGRAMS = [
         'Malcolm' => [
             'summary' => 'The series follows a dysfunctional working-class family and stars Frankie Muniz in the lead role of Malcolm, a somewhat normal boy who tests at genius level. While he enjoys his intelligence, he despises having to take classes for gifted children, who are mocked by the other students who call them "Krelboynes". Jane Kaczmarek is Malcolm\'s overbearing, authoritarian mother, Lois, and Bryan Cranston plays his immature but loving father, Hal. Christopher Kennedy Masterson plays eldest brother Francis, a former rebel who, in earlier episodes, was in military school, but eventually marries and settles into a steady job',
-            'poster' => 'https://rovicorp.staticskynet.be/2/Open/TMDB4_2462/Program/1938624/_3by4/_derived_jpg_q90_246x326_m0/Malcolm%20in%20the%20Middle%202%203.jpg',
+            'poster' => 'https://m.media-amazon.com/images/M/MV5BNTc2MzM2N2YtZDdiOS00M2I2LWFjOGItMDM3OTA3YjUwNjAxXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_.jpg',
             'category' => 'category_2',
             ],
         'Walking Dead' => [
@@ -25,7 +25,7 @@ class ProgramFixtures extends Fixture  implements DependentFixtureInterface
             ],
         'Friends' => [
             'summary' => 'Une bande de potes à New York',
-            'poster' => 'poster',
+            'poster' => 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
             'category' => 'category_2',
         ]
         ];
