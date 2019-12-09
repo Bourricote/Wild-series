@@ -4,7 +4,7 @@
 {% block body %}
 
     <div class="media">
-        <img class="align-self-start mr-3 poster" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <img class="align-self-start mr-3 poster" src="{{ program.poster }}" alt="{{ program.title }} poster">
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
@@ -20,10 +20,13 @@
                 {% for comment in comments %}
                     <div>
                         <ul>
-                        <li>Auteur : {{ comment.author.username }}</li>
-                        <li>Episode : {{ program.title }} - {{ comment.episode.title }}</li>
-                        <li>Note : {{ comment.rate }}</li>
-                        <li>Commentaire : {{ comment.comment }}</li>
+                            <li>Auteur : {{ comment.author.username }}</li>
+                            <li>Episode : {{ program.title }} - {{ comment.episode.title }}</li>
+                            <li>Note : {{ comment.rate }}</li>
+                            <li>Commentaire : {{ comment.comment }}</li>
+                            {% if app.user.id == comment.author.id %}
+                                <li><a href="{{ path('comment_delete', {'id': comment.id}) }}">Supprimer mon commentaire</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     <br>
