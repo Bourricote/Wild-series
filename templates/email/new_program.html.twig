@@ -1,0 +1,22 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background-color: #419494;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    img {
+        max-width: 300px;
+        margin: auto;
+    }
+</style>
+
+<h1> {{ program.title }} vient de sortir !</h1>
+<img src="{{ program.poster }}" alt="poster">
+<h4>{{ program.summary }}</h4>
+<a href="localhost:8000/wild/program/{{ program.id }}">Cliquez ici pour retrouver cette série !</a>
+
+<p>A bientôt sur Wild Series !</p>
