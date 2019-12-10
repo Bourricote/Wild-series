@@ -10,9 +10,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('wild_index') }}">Index<span class="sr-only">(current)</span></a>
             </li>
-            <li>
-                <a class="nav-link" href="{{ path('program_index') }}"> Liste des séries </a>
-            </li>
             {% if app.user %}
                 <li class="nav-link">
                     {{ app.user.username }}

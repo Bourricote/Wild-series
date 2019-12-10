@@ -24,8 +24,8 @@
                             <li>Episode : {{ program.title }} - {{ comment.episode.title }}</li>
                             <li>Note : {{ comment.rate }}</li>
                             <li>Commentaire : {{ comment.comment }}</li>
-                            {% if app.user.id == comment.author.id %}
-                                <li><a href="{{ path('comment_delete', {'id': comment.id}) }}">Supprimer mon commentaire</a></li>
+                            {% if app.user.id is defined and app.user.id == comment.author.id or is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('wild_comment_edit', {'id': comment.id}) }}">Supprimer ce commentaire</a></li>
                             {% endif %}
                         </ul>
                     </div>
