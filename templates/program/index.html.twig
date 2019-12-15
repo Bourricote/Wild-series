@@ -12,9 +12,9 @@
             <tr class="row">
                 <th class="col-1">Id</th>
                 <th class="col-2">Titre</th>
-                <th class="col-5">Résumé</th>
+                <th class="col-4">Résumé</th>
                 <th class="col-2">Poster</th>
-                <th class="col-1">Saisons</th>
+                <th class="col-2">Acteurs</th>
                 <th class="col-1">actions</th>
             </tr>
         </thead>
@@ -23,10 +23,16 @@
             <tr class="row">
                 <td class="col-1">{{ program.id }}</td>
                 <td class="col-2"><a href="{{ path('wild_show_program', {'id': program.id}) }}">{{ program.title }}</a></td>
-                <td class="col-5">{{ program.summary }}</td>
+                <td class="col-4">{{ program.summary }}</td>
                 <td class="col-2"><img src="{{ program.poster }}" alt="program poster" class="mini-poster"></td>
-                <td class="col-1">
-                    <a href="{{ path('season_index') }}">saisons</a>
+                <td class="col-2">
+                    <ul>
+                        {% for actor in program.actors %}
+                            <li><a href="{{ path('actor_show', {'slug': actor.slug}) }}">{{ actor.name }}</a></li>
+                        {% else %}
+                            <li>Aucun acteur pour cette série</li>
+                        {% endfor %}
+                    </ul>
                 </td>
                 <td class="col-1">
                     <a href="{{ path('program_show', {'slug': program.slug}) }}"><i class="far fa-eye"></i></a>
