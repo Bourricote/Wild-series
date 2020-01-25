@@ -19,6 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoryController extends AbstractController
 {
+
+    public function navbarCategories(CategoryRepository $categoryRepository)
+    {
+        return $this->render('_categories_navbar.html.twig', [
+            'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
     /**
      * @Route("/", name="index", methods={"GET"})
      * @param CategoryRepository $categoryRepository
